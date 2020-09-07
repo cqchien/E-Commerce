@@ -11,6 +11,9 @@
 
     <header class="header">
       <div class="brand">
+        <button onclick="openMenu()">
+          &#9776;
+        </button>
         <a href="index.html">ChiVy</a>
       </div>
       <div class="header-links">
@@ -18,6 +21,19 @@
         <a href="singin.html">Sing in</a>
       </div>
     </header>
+
+    <aside class="sidebar">
+      <h3>Shopping Categories</h3>
+      <button class="sidebar-close-button" onclick="closeMenu()">X</button>
+      <ul class="product-category">
+        <li>
+          <a href="index.html">Pants</a>
+        </li>
+        <li>
+          <a href="index.html">Shirt</a>
+        </li>
+      </ul>
+    </aside>
 
     <main class="main">
       <div class="content">
@@ -88,6 +104,15 @@
     <footer class="footer">
       All right reserved.
     </footer>
+
+    <script>
+      function openMenu(){
+        document.querySelector(".sidebar").classList.add("open")
+      }
+      function closeMenu(){
+        document.querySelector(".sidebar").classList.remove("open")
+      }
+    </script>
 
   </div>
 </body>
