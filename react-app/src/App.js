@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import './index.css'
 
+import data from './mock/data.js' 
+
 function App() {
 
   const openMenu = () => {
@@ -11,7 +13,9 @@ function App() {
     document.querySelector(".sidebar").classList.remove("open")
   }
   return (
-  <div className="grid-container">
+
+  <BrowserRouter>
+    <div className="grid-container">
     <header className="header">
       <div className="brand">
         <button onClick={openMenu}>
@@ -38,62 +42,24 @@ function App() {
     </aside>
     <main className="main">
       <div className="content">
+        <Route path="/" exact="true" component = "HomeScreen" />
+        <Route path="/products/:id" component = "ProductScreen" />
         <ul className="products">
-          <li>
-            <div className="product">
-              <img className="product-img" src="/images/slim-men-shirt-01.jpg" alt="slim men shirt" />
-              <div className="product-name">
-                <a href="product.html">Slim men shirt</a>
-              </div>
-              <div className="product-brand">Nike</div>
-              <div className="product-price">$40</div>
-              <div className="product-ratting">4.5 stars</div>
-            </div>
-          </li>
-          <li>
-            <div className="product">
-              <img className="product-img" src="/images/slim-men-shirt-01.jpg" alt="slim men shirt" />
-              <div className="product-name">
-                <a href="product.html">Slim men shirt</a>
-              </div>
-              <div className="product-brand">Nike</div>
-              <div className="product-price">$40</div>
-              <div className="product-ratting">4.5 stars</div>
-            </div>
-          </li>
-          <li>
-            <div className="product">
-              <img className="product-img" src="/images/slim-men-shirt-01.jpg" alt="slim men shirt" />
-              <div className="product-name">
-                <a href="product.html">Slim men shirt</a>
-              </div>
-              <div className="product-brand">Nike</div>
-              <div className="product-price">$40</div>
-              <div className="product-ratting">4.5 stars</div>
-            </div>
-          </li>
-          <li>
-            <div className="product">
-              <img className="product-img" src="/images/slim-men-shirt-01.jpg" alt="slim men shirt" />
-              <div className="product-name">
-                <a href="product.html">Slim men shirt</a>
-              </div>
-              <div className="product-brand">Nike</div>
-              <div className="product-price">$40</div>
-              <div className="product-ratting">4.5 stars</div>
-            </div>
-          </li>
-          <li>
-            <div className="product">
-              <img className="product-img" src="/images/slim-men-shirt-01.jpg" alt="slim men shirt" />
-              <div className="product-name">
-                <a href="product.html">Slim men shirt</a>
-              </div>
-              <div className="product-brand">Nike</div>
-              <div className="product-price">$40</div>
-              <div className="product-ratting">4.5 stars</div>
-            </div>
-          </li>
+          {
+            data.products.map( product => 
+              <li>
+                <div className="product">
+                  <img className="product-img" src={product.image} alt="slim men shirt" />
+                  <div className="product-name">
+                    <a href="product.html">{product.name}</a>
+                  </div>
+                  <div className="product-brand">{product.brand}</div>
+                  <div className="product-price">${product.price}</div>
+                  <div className="product-ratting">{product.rating} Stars {product.numReview} Reviews</div>
+                </div>
+              </li>
+              )
+          }
         </ul>
       </div>
     </main>
@@ -101,6 +67,7 @@ function App() {
       All right reserved.
     </footer>
   </div>
+  </BrowserRouter>
 
   );
 }
