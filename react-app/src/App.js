@@ -1,8 +1,11 @@
 import React from 'react';
+import { BrowserRouter, Route, Link} from "react-router-dom";
+
 import './App.css';
 import './index.css'
 
-import data from './mock/data.js' 
+import HomeScreen from './components/HomeScreen'
+import ProductScreen from './components/ProductScreen'
 
 function App() {
 
@@ -21,7 +24,7 @@ function App() {
         <button onClick={openMenu}>
           ☰
         </button>
-        <a href="index.html">ChiVy</a>
+        <Link to="/">amoniac</Link>
       </div>
       <div className="header-links">
         <a href="cart.html">Cart</a>
@@ -42,25 +45,10 @@ function App() {
     </aside>
     <main className="main">
       <div className="content">
-        <Route path="/" exact="true" component = "HomeScreen" />
-        <Route path="/products/:id" component = "ProductScreen" />
-        <ul className="products">
-          {
-            data.products.map( product => 
-              <li>
-                <div className="product">
-                  <img className="product-img" src={product.image} alt="slim men shirt" />
-                  <div className="product-name">
-                    <a href="product.html">{product.name}</a>
-                  </div>
-                  <div className="product-brand">{product.brand}</div>
-                  <div className="product-price">${product.price}</div>
-                  <div className="product-ratting">{product.rating} Stars {product.numReview} Reviews</div>
-                </div>
-              </li>
-              )
-          }
-        </ul>
+        
+        <Route path="/" exact="true" component = {HomeScreen} />
+        <Route path="/product/:id" component = {ProductScreen} />
+        
       </div>
     </main>
     <footer className="footer">
